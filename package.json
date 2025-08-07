@@ -1,0 +1,16 @@
+{
+  "name": "ip-calc-js",
+  "version": "1.0.0",
+  "description": "IP Calculator JS is a simple JavaScript tool for calculating network IP addresses.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pretty": "npx prettier . --write"
+  },
+  "keywords": [],
+  "author": "Aleksandar Belic Aleksanchez",
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^3.6.2"
+  }
+}

@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>IP Calculator TS Demo</title>
-    <script src="./dist/ip-calc.js" defer></script>
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -67,5 +66,13 @@
         autocomplete="off"
       />
     </div>
+
+    <script type="module">
+      import {IPAddress} from './src/IPAddress.js';
+
+      const ip = new IPAddress('192.168.0.1');
+      console.log('IP Address:', ip.toString());
+      console.log('Binary Representation:', ip.toBinary());
+    </script>
   </body>
 </html>

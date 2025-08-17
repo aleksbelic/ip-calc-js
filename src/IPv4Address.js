@@ -9,7 +9,7 @@ export class IPv4Address extends IPAddress {
   constructor(address) {
     super(address);
     this.address = address;
-    if (this.isValid() === false) {
+    if (!this.isValid()) {
       throw new Error('Invalid IPv4 address format');
     }
   }
@@ -36,7 +36,7 @@ export class IPv4Address extends IPAddress {
   toBinary() {
     return this.address
       .split('.')
-      .map(o => parseInt(o, 10).toString(2).padStart(8, '0'))
+      .map(octet => parseInt(octet, 10).toString(2).padStart(8, '0'))
       .join('.');
   }
 
@@ -47,8 +47,8 @@ export class IPv4Address extends IPAddress {
   toHex() {
     return this.address
       .split('.')
-      .map(o => parseInt(o, 10).toString(16).padStart(2, '0'))
-      .join(':');
+      .map(octet => parseInt(octet, 10).toString(16).padStart(2, '0'))
+      .join('');
   }
 
   /**
@@ -60,22 +60,27 @@ export class IPv4Address extends IPAddress {
     return new IPv4Address(
       binary
         .split('.')
-        .map(o => parseInt(o, 2).toString(10))
+        .map(octet => parseInt(octet, 2).toString(10))
         .join('.')
     );
   }
 
   /**
    * Create an IPv4 address instance from a hexadecimal string.
-   * @param {string} hex - Hexadecimal IPv4 address (e.g., "c0:a8:01:01")
-   * @returns {IPAddress}
+   * @param {string} hex - Hexadecimal IPv4 address (8 characters, e.g., "0a36037f")
+   * @returns {IPv4Address}
+   * @throws {Error} If the hex string is not exactly 8 characters long
    */
   static fromHex(hex) {
-    return new IPv4Address(
-      hex
-        .split(':')
-        .map(o => parseInt(o, 16).toString(10))
-        .join('.')
-    );
+    if (hex.length !== 8) {
+      throw new Error('Hex string must be 8 characters (4 bytes).');
+    }
+
+    const octets = [];
+    for (let i = 0; i < 8; i += 2) {
+      octets.push(parseInt(hex.slice(i, i + 2), 16));
+    }
+
+    return new IPv4Address(octets.join('.'));
   }
 }

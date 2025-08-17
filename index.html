@@ -12,7 +12,6 @@
         margin: 0;
         padding: 2rem;
       }
-
       #ip4-container {
         font-family: monospace;
         font-size: 1.2rem;
@@ -68,11 +67,11 @@
     </div>
 
     <script type="module">
-      import {IPAddress} from './src/IPAddress.js';
+      import {IPv4Address} from './src/IPv4Address.js';
 
-      const ip = new IPAddress('192.168.0.1');
-      console.log('IP Address:', ip.toString());
-      console.log('Binary Representation:', ip.toBinary());
+      const ipv4Address = new IPv4Address('192.168.0.1');
+      console.log('IP Address:', ipv4Address.toString());
+      console.log('Binary Representation:', ipv4Address.toBinary());
     </script>
   </body>
 </html>

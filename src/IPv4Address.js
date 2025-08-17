@@ -1,17 +1,16 @@
 import {IPAddress} from './IPAddress.js';
 
 export class IPv4Address extends IPAddress {
-  address;
   /**
    * Create an IPv4 address instance.
    * @param {string} address - IPv4 address in dotted-decimal format (e.g., "192.168.0.14")
-   * @throws {InvalidArgumentException} If the address is not well-formed.
+   * @throws {Error} If the address is not well-formed.
    */
   constructor(address) {
     super(address);
     this.address = address;
     if (this.isValid() === false) {
-      throw new InvalidArgumentException('Invalid IPv4 address format');
+      throw new Error('Invalid IPv4 address format');
     }
   }
 

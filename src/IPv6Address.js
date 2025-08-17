@@ -1,17 +1,16 @@
-// src/ip/IPv6Address.js
 import {IPAddress} from './IPAddress.js';
 
 export class IPv6Address extends IPAddress {
   /**
    * Create an IPv6 address instance.
    * @param {string} address - IPv6 address in hexadecimal format (e.g., "2001:0db8::1")
-   * @throws {InvalidArgumentException} If the address is not well-formed.
+   * @throws {Error} If the address is not well-formed.
    */
   constructor(address) {
     super(address);
     this.address = address;
-    if (this.isValid() === false) {
-      throw new InvalidArgumentException('Invalid IPv6 address format');
+    if (!this.isValid()) {
+      throw new Error('Invalid IPv6 address format');
     }
     this.address = this.toHex();
   }

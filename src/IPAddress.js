@@ -7,6 +7,11 @@ export class IPAddress {
     }
   }
 
+  /** @returns {string} */
+  toString() {
+    return this.address;
+  }
+
   /**
    * Must be implemented in derived classes.
    * @returns {string}
